@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Casino Game Hub</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    color:white;
+    text-align:center;
+    overflow-x:hidden;
+    background:linear-gradient(135deg,#000000,#14001f,#001a33);
+}
+
+/* Animated neon background */
+body::before{
+    content:"";
+    position:fixed;
+    top:-50%;
+    left:-50%;
+    width:200%;
+    height:200%;
+    background:
+    radial-gradient(circle,#ffcc00 0%,transparent 25%),
+    radial-gradient(circle,#00c3ff 0%,transparent 25%),
+    radial-gradient(circle,#ff0066 0%,transparent 25%);
+    animation:bgMove 12s linear infinite;
+    opacity:0.15;
+    z-index:-1;
+}
+
+@keyframes bgMove{
+    0%{transform:rotate(0deg);}
+    100%{transform:rotate(360deg);}
+}
+
+/* HEADER */
+header{
+    padding:40px 20px;
+    background:linear-gradient(90deg,#00c3ff,#ff0066);
+    box-shadow:0 0 25px #00c3ff;
+}
+
+.logo{
+    width:200px;
+    max-width:80%;
+    border-radius:25px;
+    box-shadow:0 0 25px gold;
+    margin-bottom:15px;
+}
+
+/* VIP TAG */
+.vip{
+    display:inline-block;
+    background:gold;
+    color:black;
+    padding:6px 14px;
+    border-radius:20px;
+    font-weight:bold;
+    margin-top:10px;
+}
+
+/* MAIN CONTAINER */
+.container{
+    padding:30px;
+}
+
+/* GLASS CARD */
+.card{
+    width:90%;
+    max-width:550px;
+    margin:20px auto;
+    padding:25px;
+    border-radius:20px;
+    background:rgba(255,255,255,0.06);
+    backdrop-filter:blur(12px);
+    border:1px solid rgba(255,255,255,0.1);
+    box-shadow:0 0 20px rgba(0,0,0,0.5);
+}
+
+/* BUTTON */
+.btn{
+    display:inline-block;
+    margin-top:15px;
+    padding:15px 28px;
+    background:linear-gradient(45deg,#ffcc00,#ff0066);
+    color:black;
+    text-decoration:none;
+    border-radius:12px;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+.btn:hover{
+    transform:scale(1.08);
+}
+
+/* SLOT MACHINE */
+.slot-box{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    margin:20px 0;
+}
+
+.reel{
+    width:75px;
+    height:75px;
+    background:#111;
+    border:2px solid gold;
+    border-radius:12px;
+    font-size:35px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.spin{
+    animation:spinAnim 0.25s linear infinite;
+}
+
+@keyframes spinAnim{
+    0%{transform:rotateX(0deg);}
+    100%{transform:rotateX(360deg);}
+}
+
+/* WHATSAPP FLOAT */
+.whatsapp{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    background:#25D366;
+    color:white;
+    padding:15px;
+    border-radius:50%;
+    text-decoration:none;
+    font-size:22px;
+    box-shadow:0 0 15px #25D366;
+}
+
+/* JACKPOT POPUP */
+.popup{
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    background:black;
+    padding:30px;
+    border-radius:15px;
+    border:2px solid gold;
+    display:none;
+    z-index:999;
+    font-size:24px;
+    box-shadow:0 0 30px gold;
+}
+
+/* CONFETTI */
+.confetti{
+    position:fixed;
+    width:10px;
+    height:10px;
+    top:0;
+    animation:fall 2s linear infinite;
+}
+
+@keyframes fall{
+    to{
+        transform:translateY(100vh) rotate(360deg);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <!-- ADD YOUR LOGO -->
+    <img src="./logo.png" alt="Casino Game Hub Logo" class="logo">
+
+    <h1>🎲 Casino Game Hub 🎰</h1>
+
+    <div class="vip">💎 ELITE VIP CASINO LOUNGE 💎</div>
+
+    <p>
+        🔥 Daily Casino Fun • 🎰 VIP Gaming • 💰 Lucky Spins
+    </p>
+
+</header>
+
+<div class="container">
+
+    <div class="card">
+        <h2>🔥 Join Our Facebook Community</h2>
+
+        <p>
+            🎉 Get daily casino vibes, VIP fun & gaming updates
+        </p>
+
+        <a class="btn"
+           href="https://www.facebook.com/CasinoGameHublive/"
+           target="_blank">
+           🔵 Visit Facebook Page
+        </a>
+    </div>
+
+    <div class="card">
+
+        <h2>📱 VIP Support Center</h2>
+
+        <p>
+            💬 Connect instantly with our VIP support team
+        </p>
+
+        <a class="btn"
+           href="https://wa.me/14244414732"
+           target="_blank">
+           💬 WhatsApp Now
+        </a>
+
+    </div>
+
+    <div class="card">
+
+        <h2>🎰 Lucky Jackpot Spin</h2>
+
+        <div class="slot-box">
+            <div class="reel" id="r1">🍒</div>
+            <div class="reel" id="r2">💎</div>
+            <div class="reel" id="r3">7️⃣</div>
+        </div>
+
+        <button class="btn" onclick="spin()">
+            🎲 SPIN & WIN
+        </button>
+
+    </div>
+
+    <div class="card">
+
+        <h2>👑 Why Join Casino Game Hub?</h2>
+
+        <p>✨ VIP Casino Atmosphere</p>
+        <p>🔥 Exciting Gaming Community</p>
+        <p>💎 Premium Gaming Experience</p>
+        <p>🎰 Fun Jackpot Style Activities</p>
+
+    </div>
+
+</div>
+
+<!-- FLOATING WHATSAPP -->
+<a class="whatsapp"
+   href="https://wa.me/14244414732"
+   target="_blank">
+   💬
+</a>
+
+<!-- JACKPOT POPUP -->
+<div class="popup" id="popup">
+    🎉 JACKPOT BONUS UNLOCKED 🎉
+</div>
+
+<script>
+function spin(){
+
+    const symbols=[
+        "🍒","💎","🔔","🍋","⭐","7️⃣","🪙"
+    ];
+
+    let r1=document.getElementById("r1");
+    let r2=document.getElementById("r2");
+    let r3=document.getElementById("r3");
+
+    r1.classList.add("spin");
+    r2.classList.add("spin");
+    r3.classList.add("spin");
+
+    let interval=setInterval(()=>{
+
+        r1.innerText=symbols[Math.floor(Math.random()*symbols.length)];
+        r2.innerText=symbols[Math.floor(Math.random()*symbols.length)];
+        r3.innerText=symbols[Math.floor(Math.random()*symbols.length)];
+
+    },80);
+
+    setTimeout(()=>{
+
+        clearInterval(interval);
+
+        r1.classList.remove("spin");
+        r2.classList.remove("spin");
+        r3.classList.remove("spin");
+
+        showPopup();
+
+    },2200);
+}
+
+function showPopup(){
+
+    let popup=document.getElementById("popup");
+
+    popup.style.display="block";
+
+    for(let i=0;i<40;i++){
+
+        let c=document.createElement("div");
+
+        c.className="confetti";
+
+        c.style.left=Math.random()*100+"vw";
+
+        c.style.background=[
+            "#ffcc00",
+            "#ff0066",
+            "#00c3ff"
+        ][Math.floor(Math.random()*3)];
+
+        document.body.appendChild(c);
+
+        setTimeout(()=>c.remove(),2000);
+    }
+
+    setTimeout(()=>{
+        popup.style.display="none";
+    },2500);
+}
+</script>
+
+</body>
+</html>
